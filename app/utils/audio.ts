@@ -113,6 +113,19 @@ class SoundEngine {
       } else if (type === 'alert') {
         this.playAlertTone(ctx, masterGain, now);
       }
+
+      // Mobile haptic vibration if supported
+      if (typeof window !== 'undefined' && typeof navigator !== 'undefined' && 'vibrate' in navigator) {
+        try {
+          if (type === 'success') {
+            navigator.vibrate([20, 50, 20]);
+          } else {
+            navigator.vibrate(8);
+          }
+        } catch {
+          // Ignore if vibration blocked by browser permission
+        }
+      }
     } catch {
       // Audio playback fails silently if restricted by autoplay policies
     }
@@ -284,13 +297,16 @@ class SoundEngine {
   // Attach global click event handler so every interactive element clicks automatically
   public attachGlobalSoundListener() {
     if (this.listenersAttached || typeof window === 'undefined') return;
-    this.listenersAttached = true;
-
-    window.addEventListener('click', (e) => {
-      // Resume audio context on user interaction
+    const resumeAudio = () => {
       if (this.ctx && this.ctx.state === 'suspended') {
         this.ctx.resume();
       }
+    };
+
+    window.addEventListener('touchstart', resumeAudio, { capture: true, passive: true });
+
+    window.addEventListener('click', (e) => {
+      resumeAudio();
 
       // Check if target or parent is an interactive element
       const target = e.target as HTMLElement | null;
