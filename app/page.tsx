@@ -39,8 +39,8 @@ interface PaymentItem {
 
 const INITIAL_PAYMENTS: PaymentItem[] = [
   { id: 1, description: 'Portal Fees', amount: 17380, status: 'Pending', category: 'fee' },
-  { id: 2, description: 'DD Amount (1)', amount: 25000, status: 'Pending', category: 'dd1' },
-  { id: 3, description: 'DD Amount (2)', amount: 25000, status: 'Pending', category: 'dd2' }
+  { id: 2, description: 'GST Fees ', amount: 25000, status: 'Pending', category: 'dd1' },
+  { id: 3, description: 'Paypal Fees', amount: 25000, status: 'Pending', category: 'dd2' }
 ];
 
 export default function PortalPage() {
@@ -226,11 +226,10 @@ export default function PortalPage() {
                     <button
                       key={style.id}
                       onClick={() => handleChangeProfile(style.id)}
-                      className={`w-full text-left px-2.5 py-1.5 rounded-lg text-xs flex items-center justify-between transition-colors ${
-                        soundProfile === style.id
+                      className={`w-full text-left px-2.5 py-1.5 rounded-lg text-xs flex items-center justify-between transition-colors ${soundProfile === style.id
                           ? 'bg-blue-600 text-white font-medium'
                           : 'hover:bg-slate-100 text-slate-700'
-                      }`}
+                        }`}
                     >
                       <div>
                         <div>{style.label}</div>
@@ -266,7 +265,7 @@ export default function PortalPage() {
                 <User className="w-4 h-4 sm:w-5 sm:h-5 fill-white text-[#0B57D0]" />
               </div>
               <span className="hidden md:inline text-sm font-semibold text-slate-800">
-                Mr. Bashir Kumar
+                Mr. Rajan Soni
               </span>
               <ChevronDown className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-slate-600" />
             </button>
@@ -276,7 +275,7 @@ export default function PortalPage() {
               <div className="absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-xl border border-slate-200 py-1.5 z-50">
                 <div className="px-4 py-2 border-b border-slate-100">
                   <p className="text-xs text-slate-500">Signed in as</p>
-                  <p className="text-sm font-bold text-slate-900 truncate">Mr. Bashir Kumar</p>
+                  <p className="text-sm font-bold text-slate-900 truncate">Mr. Rajan Soni</p>
                   <span className="inline-block mt-1 text-[11px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-full">
                     KYC Verified
                   </span>
@@ -364,16 +363,14 @@ export default function PortalPage() {
                 <button
                   key={item.id}
                   onClick={() => handleSelectTab(item.id)}
-                  className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-sm font-medium transition-all btn-tactile ${
-                    isActive
+                  className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-sm font-medium transition-all btn-tactile ${isActive
                       ? 'bg-[#EBF3FE] text-[#0B57D0]'
                       : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
-                  }`}
+                    }`}
                 >
                   <Icon
-                    className={`w-5 h-5 shrink-0 ${
-                      isActive ? 'text-[#0B57D0]' : 'text-slate-600'
-                    }`}
+                    className={`w-5 h-5 shrink-0 ${isActive ? 'text-[#0B57D0]' : 'text-slate-600'
+                      }`}
                   />
                   <span className={`${!desktopSidebarOpen ? 'lg:hidden' : 'inline'}`}>
                     {item.label}
@@ -415,7 +412,7 @@ export default function PortalPage() {
                   <div>
                     <p className="text-slate-600 text-xs sm:text-sm font-normal">Welcome,</p>
                     <h1 className="text-xl sm:text-2xl md:text-[28px] font-bold text-slate-900 tracking-tight">
-                      Mr. Bashir Kumar
+                      Mr. Rajan Soni
                     </h1>
                   </div>
                 </div>
@@ -429,10 +426,10 @@ export default function PortalPage() {
                         Final Amount You Will Get
                       </h2>
                       <div className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#0B57D0] tracking-tight">
-                        ₹ 11,77,252
+                        ₹ 7,00,000
                       </div>
                       <p className="text-xs sm:text-sm text-slate-500 font-normal leading-relaxed pt-1">
-                        Rupees Eleven Lakh Seventy Seven Thousand Two Hundred Fifty Two Only
+                        Rupees Seven Lakh Only
                       </p>
                     </div>
 
@@ -448,7 +445,7 @@ export default function PortalPage() {
                           After completing the payments below, you will receive
                         </p>
                         <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#16A34A] tracking-tight">
-                          ₹ 11,77,252
+                          ₹ 7,00,000
                         </div>
                       </div>
                     </div>
@@ -547,7 +544,7 @@ export default function PortalPage() {
                           <div className="w-5 h-5 rounded-full bg-[#1A56DB] text-white flex items-center justify-center text-[11px] font-bold shrink-0 mt-0.5">
                             2
                           </div>
-                          <span>Submit DD Amount (1): ₹ 25,000</span>
+                          <span>Submit GST Fees : ₹ 25,000</span>
                         </div>
 
                         {/* Step 3 */}
@@ -555,7 +552,7 @@ export default function PortalPage() {
                           <div className="w-5 h-5 rounded-full bg-[#1A56DB] text-white flex items-center justify-center text-[11px] font-bold shrink-0 mt-0.5">
                             3
                           </div>
-                          <span>Submit DD Amount (2): ₹ 25,000</span>
+                          <span>Submit Paypal Fees : ₹ 25,000</span>
                         </div>
 
                         {/* Step 4 */}
@@ -564,7 +561,7 @@ export default function PortalPage() {
                             4
                           </div>
                           <span className="leading-snug">
-                            After successful payment verification, you will receive ₹ 11,77,252
+                            After successful payment verification, you will receive ₹ 700000
                           </span>
                         </div>
                       </div>
@@ -576,7 +573,7 @@ export default function PortalPage() {
                     <CheckCircle2 className="w-5 h-5 text-[#10B981] fill-[#10B981] text-white shrink-0 mt-0.5 sm:mt-0" />
                     <p className="text-xs sm:text-sm text-slate-800 leading-snug">
                       Once all the above payments are completed and verified, you will get{' '}
-                      <strong className="text-slate-900 font-bold">₹ 11,77,252.</strong>
+                      <strong className="text-slate-900 font-bold">₹ 700000</strong>
                     </p>
                   </div>
                 </div>
@@ -590,7 +587,7 @@ export default function PortalPage() {
                       <User className="w-7 h-7 sm:w-9 sm:h-9 fill-white text-[#0B57D0]" />
                     </div>
                     <div>
-                      <h2 className="text-lg sm:text-xl font-bold text-slate-900">Mr. Bashir Kumar</h2>
+                      <h2 className="text-lg sm:text-xl font-bold text-slate-900">Mr. Rajan Soni</h2>
                       <p className="text-xs text-slate-500">Applicant ID: APP-2024-88419</p>
                     </div>
                   </div>
@@ -602,7 +599,7 @@ export default function PortalPage() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 text-sm">
                   <div className="p-3.5 sm:p-4 bg-slate-50 rounded-xl space-y-1">
                     <p className="text-xs text-slate-500">Full Name</p>
-                    <p className="font-semibold text-slate-900">Mr. Bashir Kumar</p>
+                    <p className="font-semibold text-slate-900">Mr. Rajan Soni</p>
                   </div>
                   <div className="p-3.5 sm:p-4 bg-slate-50 rounded-xl space-y-1">
                     <p className="text-xs text-slate-500">Mobile Number</p>
@@ -725,9 +722,8 @@ export default function PortalPage() {
                     </div>
                     <button
                       onClick={handleToggleSound}
-                      className={`self-start sm:self-auto px-4 py-2 rounded-lg text-xs font-bold transition-colors btn-tactile ${
-                        !isSoundMuted ? 'bg-[#0B57D0] text-white' : 'bg-slate-200 text-slate-700'
-                      }`}
+                      className={`self-start sm:self-auto px-4 py-2 rounded-lg text-xs font-bold transition-colors btn-tactile ${!isSoundMuted ? 'bg-[#0B57D0] text-white' : 'bg-slate-200 text-slate-700'
+                        }`}
                     >
                       {!isSoundMuted ? 'Sound Enabled' : 'Muted'}
                     </button>
@@ -780,11 +776,10 @@ export default function PortalPage() {
                   playClick('tab');
                   setPaymentMethod('upi');
                 }}
-                className={`py-2 px-2 rounded-xl text-xs font-semibold border flex flex-col items-center gap-1 transition-all btn-tactile ${
-                  paymentMethod === 'upi'
+                className={`py-2 px-2 rounded-xl text-xs font-semibold border flex flex-col items-center gap-1 transition-all btn-tactile ${paymentMethod === 'upi'
                     ? 'border-blue-600 bg-blue-50/60 text-blue-700 ring-1 ring-blue-600'
                     : 'border-slate-200 text-slate-600 hover:bg-slate-50'
-                }`}
+                  }`}
               >
                 <QrCode className="w-4 h-4" />
                 UPI / QR
@@ -795,11 +790,10 @@ export default function PortalPage() {
                   playClick('tab');
                   setPaymentMethod('card');
                 }}
-                className={`py-2 px-2 rounded-xl text-xs font-semibold border flex flex-col items-center gap-1 transition-all btn-tactile ${
-                  paymentMethod === 'card'
+                className={`py-2 px-2 rounded-xl text-xs font-semibold border flex flex-col items-center gap-1 transition-all btn-tactile ${paymentMethod === 'card'
                     ? 'border-blue-600 bg-blue-50/60 text-blue-700 ring-1 ring-blue-600'
                     : 'border-slate-200 text-slate-600 hover:bg-slate-50'
-                }`}
+                  }`}
               >
                 <CreditCard className="w-4 h-4" />
                 Debit Card
@@ -810,11 +804,10 @@ export default function PortalPage() {
                   playClick('tab');
                   setPaymentMethod('dd');
                 }}
-                className={`py-2 px-2 rounded-xl text-xs font-semibold border flex flex-col items-center gap-1 transition-all btn-tactile ${
-                  paymentMethod === 'dd'
+                className={`py-2 px-2 rounded-xl text-xs font-semibold border flex flex-col items-center gap-1 transition-all btn-tactile ${paymentMethod === 'dd'
                     ? 'border-blue-600 bg-blue-50/60 text-blue-700 ring-1 ring-blue-600'
                     : 'border-slate-200 text-slate-600 hover:bg-slate-50'
-                }`}
+                  }`}
               >
                 <Building className="w-4 h-4" />
                 DD / Cheque

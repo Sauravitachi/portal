@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "PORTAL - Dashboard | Mr. Bashir Kumar",
+  title: "PORTAL - Dashboard | Mr. Rajan Soni",
   description: "Official disbursement and payment verification portal",
 };
 
