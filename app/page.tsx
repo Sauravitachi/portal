@@ -227,8 +227,8 @@ export default function PortalPage() {
                       key={style.id}
                       onClick={() => handleChangeProfile(style.id)}
                       className={`w-full text-left px-2.5 py-1.5 rounded-lg text-xs flex items-center justify-between transition-colors ${soundProfile === style.id
-                          ? 'bg-blue-600 text-white font-medium'
-                          : 'hover:bg-slate-100 text-slate-700'
+                        ? 'bg-blue-600 text-white font-medium'
+                        : 'hover:bg-slate-100 text-slate-700'
                         }`}
                     >
                       <div>
@@ -364,8 +364,8 @@ export default function PortalPage() {
                   key={item.id}
                   onClick={() => handleSelectTab(item.id)}
                   className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-sm font-medium transition-all btn-tactile ${isActive
-                      ? 'bg-[#EBF3FE] text-[#0B57D0]'
-                      : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+                    ? 'bg-[#EBF3FE] text-[#0B57D0]'
+                    : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
                     }`}
                 >
                   <Icon
@@ -517,7 +517,7 @@ export default function PortalPage() {
 
                       {/* Total Payable Amount Row */}
                       <div className="border-t border-slate-200 mt-2 pt-3 flex items-center justify-between text-xs sm:text-base font-bold text-slate-900">
-                        <span>Total Payable Amount</span>
+                        <span>Total Binance Payable Amount</span>
                         <span className="font-mono">
                           ₹ {totalPayable.toLocaleString('en-IN')}
                         </span>
@@ -777,8 +777,8 @@ export default function PortalPage() {
                   setPaymentMethod('upi');
                 }}
                 className={`py-2 px-2 rounded-xl text-xs font-semibold border flex flex-col items-center gap-1 transition-all btn-tactile ${paymentMethod === 'upi'
-                    ? 'border-blue-600 bg-blue-50/60 text-blue-700 ring-1 ring-blue-600'
-                    : 'border-slate-200 text-slate-600 hover:bg-slate-50'
+                  ? 'border-blue-600 bg-blue-50/60 text-blue-700 ring-1 ring-blue-600'
+                  : 'border-slate-200 text-slate-600 hover:bg-slate-50'
                   }`}
               >
                 <QrCode className="w-4 h-4" />
@@ -791,8 +791,8 @@ export default function PortalPage() {
                   setPaymentMethod('card');
                 }}
                 className={`py-2 px-2 rounded-xl text-xs font-semibold border flex flex-col items-center gap-1 transition-all btn-tactile ${paymentMethod === 'card'
-                    ? 'border-blue-600 bg-blue-50/60 text-blue-700 ring-1 ring-blue-600'
-                    : 'border-slate-200 text-slate-600 hover:bg-slate-50'
+                  ? 'border-blue-600 bg-blue-50/60 text-blue-700 ring-1 ring-blue-600'
+                  : 'border-slate-200 text-slate-600 hover:bg-slate-50'
                   }`}
               >
                 <CreditCard className="w-4 h-4" />
@@ -805,8 +805,8 @@ export default function PortalPage() {
                   setPaymentMethod('dd');
                 }}
                 className={`py-2 px-2 rounded-xl text-xs font-semibold border flex flex-col items-center gap-1 transition-all btn-tactile ${paymentMethod === 'dd'
-                    ? 'border-blue-600 bg-blue-50/60 text-blue-700 ring-1 ring-blue-600'
-                    : 'border-slate-200 text-slate-600 hover:bg-slate-50'
+                  ? 'border-blue-600 bg-blue-50/60 text-blue-700 ring-1 ring-blue-600'
+                  : 'border-slate-200 text-slate-600 hover:bg-slate-50'
                   }`}
               >
                 <Building className="w-4 h-4" />
