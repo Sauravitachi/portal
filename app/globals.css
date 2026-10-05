@@ -1,26 +1,60 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --portal-bg: #F4F7FC;
+  --portal-navy: #061D4C;
+  --portal-blue: #0B57D0;
+  --portal-blue-light: #EBF3FE;
+  --portal-green: #16A34A;
+  --portal-green-light: #ECFDF5;
+  --portal-amber: #B45309;
+  --portal-amber-light: #FEF3C7;
+  --portal-border: #E5E7EB;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--portal-bg);
+  color: #1F2937;
+  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom crisp scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Click sound tactile ripple effect */
+.btn-tactile {
+  transition: transform 0.08s ease, filter 0.08s ease;
+}
+.btn-tactile:active {
+  transform: scale(0.975);
+  filter: brightness(0.95);
+}
+
+/* Subtle sound wave animation when click sound triggers */
+@keyframes audioPulse {
+  0% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.8; }
+}
+
+.sound-active-pulse {
+  animation: audioPulse 0.25s ease-in-out;
 }
