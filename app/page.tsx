@@ -38,7 +38,7 @@ interface PaymentItem {
 }
 
 const INITIAL_PAYMENTS: PaymentItem[] = [
-  { id: 1, description: 'Portal Fees', amount: 17380, status: 'Pending', category: 'fee' },
+  { id: 1, description: 'Portal Fees', amount: 50000, status: 'Pending', category: 'fee' },
   { id: 2, description: 'GST Fees ', amount: 25000, status: 'Pending', category: 'dd1' },
   { id: 3, description: 'Paypal Fees', amount: 25000, status: 'Pending', category: 'dd2' }
 ];
@@ -265,7 +265,7 @@ export default function PortalPage() {
                 <User className="w-4 h-4 sm:w-5 sm:h-5 fill-white text-[#0B57D0]" />
               </div>
               <span className="hidden md:inline text-sm font-semibold text-slate-800">
-                Mr. Rajan Soni
+                Mrs. Neera Ashok Rajgor
               </span>
               <ChevronDown className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-slate-600" />
             </button>
@@ -275,7 +275,7 @@ export default function PortalPage() {
               <div className="absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-xl border border-slate-200 py-1.5 z-50">
                 <div className="px-4 py-2 border-b border-slate-100">
                   <p className="text-xs text-slate-500">Signed in as</p>
-                  <p className="text-sm font-bold text-slate-900 truncate">Mr. Rajan Soni</p>
+                  <p className="text-sm font-bold text-slate-900 truncate">Mrs. Neera Ashok Rajgor</p>
                   <span className="inline-block mt-1 text-[11px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-full">
                     KYC Verified
                   </span>
@@ -412,7 +412,7 @@ export default function PortalPage() {
                   <div>
                     <p className="text-slate-600 text-xs sm:text-sm font-normal">Welcome,</p>
                     <h1 className="text-xl sm:text-2xl md:text-[28px] font-bold text-slate-900 tracking-tight">
-                      Mr. Rajan Soni
+                      Mrs. Neera Ashok Rajgor
                     </h1>
                   </div>
                 </div>
@@ -426,10 +426,10 @@ export default function PortalPage() {
                         Final Amount You Will Get
                       </h2>
                       <div className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#0B57D0] tracking-tight">
-                        ₹ 7,00,000
+                        ₹ 40,00,000
                       </div>
                       <p className="text-xs sm:text-sm text-slate-500 font-normal leading-relaxed pt-1">
-                        Rupees Seven Lakh Only
+                        Rupees Forty Lakhs Only
                       </p>
                     </div>
 
@@ -445,7 +445,7 @@ export default function PortalPage() {
                           After completing the payments below, you will receive
                         </p>
                         <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#16A34A] tracking-tight">
-                          ₹ 7,00,000
+                          ₹ 40,00,000
                         </div>
                       </div>
                     </div>
@@ -536,7 +536,7 @@ export default function PortalPage() {
                           <div className="w-5 h-5 rounded-full bg-[#1A56DB] text-white flex items-center justify-center text-[11px] font-bold shrink-0 mt-0.5">
                             1
                           </div>
-                          <span>Pay Portal Fees: ₹ 17,380</span>
+                          <span>Pay Portal Fees: ₹ 50,000</span>
                         </div>
 
                         {/* Step 2 */}
@@ -561,7 +561,7 @@ export default function PortalPage() {
                             4
                           </div>
                           <span className="leading-snug">
-                            After successful payment verification, you will receive ₹ 700000
+                            After successful payment verification, you will receive ₹ 40,00,000
                           </span>
                         </div>
                       </div>
@@ -573,7 +573,7 @@ export default function PortalPage() {
                     <CheckCircle2 className="w-5 h-5 text-[#10B981] fill-[#10B981] text-white shrink-0 mt-0.5 sm:mt-0" />
                     <p className="text-xs sm:text-sm text-slate-800 leading-snug">
                       Once all the above payments are completed and verified, you will get{' '}
-                      <strong className="text-slate-900 font-bold">₹ 700000</strong>
+                      <strong className="text-slate-900 font-bold">₹ 40,00,000</strong>
                     </p>
                   </div>
                 </div>
@@ -587,7 +587,7 @@ export default function PortalPage() {
                       <User className="w-7 h-7 sm:w-9 sm:h-9 fill-white text-[#0B57D0]" />
                     </div>
                     <div>
-                      <h2 className="text-lg sm:text-xl font-bold text-slate-900">Mr. Rajan Soni</h2>
+                      <h2 className="text-lg sm:text-xl font-bold text-slate-900">Mrs. Neera Ashok Rajgor</h2>
                       <p className="text-xs text-slate-500">Applicant ID: APP-2024-88419</p>
                     </div>
                   </div>
@@ -599,7 +599,7 @@ export default function PortalPage() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 text-sm">
                   <div className="p-3.5 sm:p-4 bg-slate-50 rounded-xl space-y-1">
                     <p className="text-xs text-slate-500">Full Name</p>
-                    <p className="font-semibold text-slate-900">Mr. Rajan Soni</p>
+                    <p className="font-semibold text-slate-900">Mrs. Neera Ashok Rajgor</p>
                   </div>
                   <div className="p-3.5 sm:p-4 bg-slate-50 rounded-xl space-y-1">
                     <p className="text-xs text-slate-500">Mobile Number</p>
