@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "SHUBH VIVAH PORTAL - Royal Wedding Disbursement & Settlement | Mrs. Nurullah Tabish",
-  description: "Official Shubh Vivah Disbursement & Shagun Settlement Portal for Mrs. Nurullah Tabish",
+  title: "Portal | Mr. Nurullah Tabish",
+  description: "Portal for Mr. Nurullah Tabish",
 };
 
 export default function RootLayout({
