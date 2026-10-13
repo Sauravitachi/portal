@@ -39,40 +39,40 @@ type TabType = 'dashboard' | 'profile' | 'documents' | 'payments' | 'summary' | 
 interface PaymentItem {
   id: number;
   description: string;
-  hindiDescription: string;
+  hindiDescription?: string;
   amount: number;
   status: 'Pending' | 'Completed';
   category: 'fee' | 'dd1' | 'dd2';
-  ceremonyTag: string;
+  ceremonyTag?: string;
 }
 
 const INITIAL_PAYMENTS: PaymentItem[] = [
   {
     id: 1,
     description: 'Portal Fees',
-    hindiDescription: 'शगुन पोर्टल पंजीकरण शुल्क',
+    hindiDescription: 'पोर्टल पंजीकरण शुल्क (प्रवेश नेग)',
     amount: 25000,
     status: 'Pending',
     category: 'fee',
-    ceremonyTag: 'Shagun Registration'
+    ceremonyTag: 'Roka & Sagan / रोका'
   },
   {
     id: 2,
     description: 'GST Fees',
-    hindiDescription: 'मंडप एवं सरकारी कर क्लीयरेंस शुल्क',
+    hindiDescription: 'सरकारी कर एवं जीएसटी (राजकीय कर)',
     amount: 25000,
     status: 'Pending',
     category: 'dd1',
-    ceremonyTag: 'Mandap Clearance'
+    ceremonyTag: 'Sangeet & Haldi / हल्दी'
   },
   {
     id: 3,
     description: 'Paypal Fees',
-    hindiDescription: 'वैश्विक सेटलमेंट एवं ट्रांजेक्शन शुल्क',
+    hindiDescription: 'डिजिटल शगुन प्रोसेसिंग शुल्क',
     amount: 25000,
     status: 'Pending',
     category: 'dd2',
-    ceremonyTag: 'Settlement Clearance'
+    ceremonyTag: 'Baraat & Pheras / फेरे'
   }
 ];
 
@@ -192,29 +192,26 @@ export default function PortalPage() {
   ] as const;
 
   return (
-    <div className={`min-h-screen flex flex-col font-sans antialiased transition-colors duration-300 ${
-      isShaadiTheme 
-        ? 'bg-[#FCF8F2] text-[#2A141A] shadi-silk-texture' 
+    <div className={`min-h-screen flex flex-col font-sans antialiased transition-colors duration-300 ${isShaadiTheme
+        ? 'bg-[#FCF8F2] text-[#2A141A] shadi-silk-texture'
         : 'bg-[#F4F7FC] text-[#1F2937]'
-    }`}>
+      }`}>
       {/* Decorative Auspicious Toran Garland Top Ribbon */}
       {isShaadiTheme && (
         <div className="h-1.5 w-full bg-gradient-to-r from-[#881337] via-[#D4AF37] to-[#BE123C] shadow-xs" />
       )}
 
       {/* ================= TOP NAVBAR ================= */}
-      <header className={`h-16 flex items-center justify-between sticky top-0 z-30 select-none transition-all duration-200 ${
-        isShaadiTheme 
-          ? 'bg-gradient-to-r from-[#580B1E] via-[#6F0E25] to-[#881337] border-b border-[#D4AF37]/50 shadow-md text-white' 
+      <header className={`h-16 flex items-center justify-between sticky top-0 z-30 select-none transition-all duration-200 ${isShaadiTheme
+          ? 'bg-gradient-to-r from-[#580B1E] via-[#6F0E25] to-[#881337] border-b border-[#D4AF37]/50 shadow-md text-white'
           : 'bg-white border-b border-[#E5E7EB] text-slate-800'
-      }`}>
+        }`}>
         {/* Left: Royal Brand Logo Block & Hamburger */}
         <div className="flex items-center h-full">
-          <div className={`w-auto px-4 sm:w-64 sm:px-6 h-full flex items-center shrink-0 border-r ${
-            isShaadiTheme 
-              ? 'bg-[#4A0817]/80 border-[#D4AF37]/40' 
+          <div className={`w-auto px-4 sm:w-64 sm:px-6 h-full flex items-center shrink-0 border-r ${isShaadiTheme
+              ? 'bg-[#4A0817]/80 border-[#D4AF37]/40'
               : 'bg-[#0B2559] border-blue-900 text-white'
-          }`}>
+            }`}>
             <div className="flex items-center gap-2.5">
               {isShaadiTheme ? (
                 <>
@@ -241,11 +238,10 @@ export default function PortalPage() {
           {/* Hamburger toggle */}
           <button
             onClick={handleToggleMenu}
-            className={`p-2 ml-2 sm:ml-4 rounded-lg transition-colors btn-tactile focus:outline-none ${
-              isShaadiTheme 
-                ? 'hover:bg-white/10 text-[#FDE68A]' 
+            className={`p-2 ml-2 sm:ml-4 rounded-lg transition-colors btn-tactile focus:outline-none ${isShaadiTheme
+                ? 'hover:bg-white/10 text-[#FDE68A]'
                 : 'hover:bg-slate-100 text-slate-700'
-            }`}
+              }`}
             title="Toggle Menu"
             aria-label="Toggle Menu"
           >
@@ -275,7 +271,7 @@ export default function PortalPage() {
             }`}
             title="Toggle Shadi Theme"
           > */}
-            {/* <Sparkles className="w-3.5 h-3.5" />
+          {/* <Sparkles className="w-3.5 h-3.5" />
             <span className="hidden md:inline">
               {isShaadiTheme ? 'Shaadi Theme' : 'Enable Shaadi Theme'}
             </span>
@@ -289,11 +285,10 @@ export default function PortalPage() {
                 playClick('switch');
                 setShowSoundSettings(!showSoundSettings);
               }}
-              className={`flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-full text-xs font-medium border transition-colors btn-tactile ${
-                isShaadiTheme
+              className={`flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-full text-xs font-medium border transition-colors btn-tactile ${isShaadiTheme
                   ? 'border-[#D4AF37]/50 bg-black/20 hover:bg-black/30 text-[#FFF5D6]'
                   : 'border-blue-200 bg-blue-50/70 hover:bg-blue-100/70 text-blue-700'
-              }`}
+                }`}
               title="Click Sound Settings"
             >
               <Volume2 className={`w-3.5 h-3.5 shrink-0 ${!isSoundMuted ? (isShaadiTheme ? 'text-[#FDE68A]' : 'text-blue-600') : 'text-slate-400'}`} />
@@ -302,9 +297,8 @@ export default function PortalPage() {
               </span>
               <span
                 key={soundRippleKey}
-                className={`w-2 h-2 rounded-full inline-block ml-0.5 ${
-                  isShaadiTheme ? 'bg-[#FDE68A] animate-ping' : 'bg-emerald-500 animate-ping'
-                }`}
+                className={`w-2 h-2 rounded-full inline-block ml-0.5 ${isShaadiTheme ? 'bg-[#FDE68A] animate-ping' : 'bg-emerald-500 animate-ping'
+                  }`}
                 title="Audio feedback active"
               />
             </button>
@@ -338,11 +332,10 @@ export default function PortalPage() {
                     <button
                       key={style.id}
                       onClick={() => handleChangeProfile(style.id)}
-                      className={`w-full text-left px-2.5 py-1.5 rounded-lg text-xs flex items-center justify-between transition-colors ${
-                        soundProfile === style.id
+                      className={`w-full text-left px-2.5 py-1.5 rounded-lg text-xs flex items-center justify-between transition-colors ${soundProfile === style.id
                           ? 'bg-gradient-to-r from-[#881337] to-[#BE123C] text-white font-medium shadow-xs'
                           : 'hover:bg-amber-50 text-slate-700'
-                      }`}
+                        }`}
                     >
                       <div>
                         <div>{style.label}</div>
@@ -371,47 +364,33 @@ export default function PortalPage() {
                 playClick('pop');
                 setUserDropdownOpen(!userDropdownOpen);
               }}
-              className={`flex items-center gap-1.5 sm:gap-2.5 py-1 px-1.5 sm:px-2 rounded-lg transition-colors btn-tactile focus:outline-none ${
-                isShaadiTheme 
-                  ? 'hover:bg-white/10 text-white' 
+              className={`flex items-center gap-1.5 sm:gap-2.5 py-1 px-1.5 sm:px-2 rounded-lg transition-colors btn-tactile focus:outline-none ${isShaadiTheme
+                  ? 'hover:bg-white/10 text-white'
                   : 'hover:bg-slate-100 text-slate-800'
-              }`}
+                }`}
             >
               {/* User Avatar Circle */}
-              <div className={`w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center shrink-0 shadow-xs border ${
-                isShaadiTheme
+              <div className={`w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center shrink-0 shadow-xs border ${isShaadiTheme
                   ? 'bg-gradient-to-tr from-[#D4AF37] to-[#FDE68A] text-[#4A0817] border-[#FFF5D6]'
                   : 'bg-[#0B57D0] text-white border-blue-400'
-              }`}>
+                }`}>
                 <User className={`w-4 h-4 sm:w-5 sm:h-5 ${isShaadiTheme ? 'text-[#580B1E] fill-[#580B1E]' : 'fill-white text-[#0B57D0]'}`} />
               </div>
-              <div className="hidden md:flex flex-col text-left">
-                <span className="text-xs sm:text-sm font-bold tracking-tight">
-                  Mrs. Nurullah Tabish
-                </span>
-                {isShaadiTheme && (
-                  <span className="text-[10px] text-[#FDE68A] font-semibold">
-                    Dulhan • Royal Beneficiary
-                  </span>
-                )}
-              </div>
-              <ChevronDown className={`w-3.5 h-3.5 sm:w-4 sm:h-4 ${isShaadiTheme ? 'text-[#FDE68A]' : 'text-slate-600'}`} />
+              <span className="hidden md:inline text-sm font-semibold text-slate-800">
+                Mr. Nurulla Tabish
+              </span>
+              <ChevronDown className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-slate-600" />
             </button>
 
             {/* Profile Dropdown */}
             {userDropdownOpen && (
-              <div className="absolute right-0 mt-2 w-60 bg-white rounded-xl shadow-2xl border border-amber-200 py-1.5 z-50 text-slate-800">
-                <div className="px-4 py-2 border-b border-amber-100 bg-amber-50/50">
-                  <p className="text-[11px] text-amber-800 font-medium">Shubh Vivah Applicant</p>
-                  <p className="text-sm font-bold text-slate-900 truncate">Mrs. Nurullah Tabish</p>
-                  <div className="flex items-center gap-1.5 mt-1">
-                    <span className="inline-block text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded-full border border-emerald-200">
-                      KYC Verified ✓
-                    </span>
-                    <span className="inline-block text-[10px] bg-amber-100 text-amber-800 font-bold px-2 py-0.5 rounded-full border border-amber-200">
-                      Shadi Mubarak 🪔
-                    </span>
-                  </div>
+              <div className="absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-xl border border-slate-200 py-1.5 z-50">
+                <div className="px-4 py-2 border-b border-slate-100">
+                  <p className="text-xs text-slate-500">Signed in as</p>
+                  <p className="text-sm font-bold text-slate-900 truncate">Mr. Nurulla Tabish</p>
+                  <span className="inline-block mt-1 text-[11px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-full">
+                    KYC Verified
+                  </span>
                 </div>
                 <button
                   onClick={() => {
@@ -471,10 +450,9 @@ export default function PortalPage() {
             fixed inset-y-0 left-0 lg:static h-full
             ${mobileMenuOpen ? 'w-64 translate-x-0 shadow-2xl' : '-translate-x-full lg:translate-x-0'}
             ${desktopSidebarOpen ? 'lg:w-64' : 'lg:w-20 lg:overflow-hidden'}
-            ${
-              isShaadiTheme 
-                ? 'bg-gradient-to-b from-[#FFFDF9] via-[#FAF3E8] to-[#FFF9F2] border-r border-[#F0DC9E] shadow-sm' 
-                : 'bg-white border-r border-[#E5E7EB]'
+            ${isShaadiTheme
+              ? 'bg-gradient-to-b from-[#FFFDF9] via-[#FAF3E8] to-[#FFF9F2] border-r border-[#F0DC9E] shadow-sm'
+              : 'bg-white border-r border-[#E5E7EB]'
             }
           `}
         >
@@ -504,22 +482,20 @@ export default function PortalPage() {
                 <button
                   key={item.id}
                   onClick={() => handleSelectTab(item.id)}
-                  className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-semibold transition-all btn-tactile ${
-                    isActive
+                  className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-semibold transition-all btn-tactile ${isActive
                       ? isShaadiTheme
                         ? 'bg-gradient-to-r from-[#680E23] to-[#881337] text-[#FFF7D6] shadow-md border-r-4 border-[#D4AF37]'
                         : 'bg-[#EBF3FE] text-[#0B57D0]'
                       : isShaadiTheme
                         ? 'text-stone-700 hover:bg-[#FBE59E]/30 hover:text-[#680E23]'
                         : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
-                  }`}
+                    }`}
                 >
                   <Icon
-                    className={`w-5 h-5 shrink-0 ${
-                      isActive 
-                        ? (isShaadiTheme ? 'text-[#FDE68A]' : 'text-[#0B57D0]') 
+                    className={`w-5 h-5 shrink-0 ${isActive
+                        ? (isShaadiTheme ? 'text-[#FDE68A]' : 'text-[#0B57D0]')
                         : (isShaadiTheme ? 'text-[#881337]' : 'text-slate-600')
-                    }`}
+                      }`}
                   />
                   <div className={`text-left leading-tight ${!desktopSidebarOpen ? 'lg:hidden' : 'inline'}`}>
                     <div>{item.label}</div>
@@ -571,18 +547,16 @@ export default function PortalPage() {
             {activeTab === 'dashboard' ? (
               <>
                 {/* 1. Auspicious Shadi Welcome Header */}
-                <div className={`p-4 sm:p-6 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-4 border ${
-                  isShaadiTheme
+                <div className={`p-4 sm:p-6 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-4 border ${isShaadiTheme
                     ? 'bg-gradient-to-r from-[#FFFDF9] via-[#FAF3E8] to-[#FFF9F2] border-[#F0DC9E] shadow-sm'
                     : 'bg-white border-slate-200 shadow-xs'
-                }`}>
+                  }`}>
                   <div className="flex items-center gap-3.5 sm:gap-4">
                     {/* Royal Gold Avatar with Garland / Crown Accent */}
-                    <div className={`w-14 h-14 sm:w-16 sm:h-16 rounded-2xl flex items-center justify-center shrink-0 shadow-md border-2 ${
-                      isShaadiTheme
+                    <div className={`w-14 h-14 sm:w-16 sm:h-16 rounded-2xl flex items-center justify-center shrink-0 shadow-md border-2 ${isShaadiTheme
                         ? 'bg-gradient-to-tr from-[#680E23] via-[#881337] to-[#BE123C] text-[#FDE68A] border-[#D4AF37]'
                         : 'bg-[#0B57D0] text-white border-blue-400'
-                    }`}>
+                      }`}>
                       {isShaadiTheme ? (
                         <Crown className="w-8 h-8 text-[#FDE68A]" />
                       ) : (
@@ -595,9 +569,8 @@ export default function PortalPage() {
                           {isShaadiTheme ? 'शुभ विवाह • मांगलिक स्वागत' : 'Welcome,'}
                         </span>
                       </div>
-                      <h1 className={`text-xl sm:text-2xl md:text-3xl font-black tracking-tight ${
-                        isShaadiTheme ? 'font-serif-luxury text-[#4A0817]' : 'text-slate-900'
-                      }`}>
+                      <h1 className={`text-xl sm:text-2xl md:text-3xl font-black tracking-tight ${isShaadiTheme ? 'font-serif-luxury text-[#4A0817]' : 'text-slate-900'
+                        }`}>
                         Mrs. Nurullah Tabish
                       </h1>
                       <p className="text-xs text-stone-500 font-medium">
@@ -605,47 +578,27 @@ export default function PortalPage() {
                       </p>
                     </div>
                   </div>
-
-                  {/* Auspicious Blessing Tag */}
-                  <div className="flex items-center gap-2 self-start sm:self-auto bg-amber-50 border border-amber-200/80 px-3.5 py-2 rounded-xl">
-                    <Flame className="w-4 h-4 text-amber-600 diya-flame-anim" />
-                    <div>
-                      <p className="text-[11px] font-bold text-[#881337]">सदा सौभाग्यवती भव</p>
-                      <p className="text-[10px] text-stone-500">Verified Direct Bank Disbursement</p>
-                    </div>
+                  <div>
+                    <p className="text-slate-600 text-xs sm:text-sm font-normal">Welcome,</p>
+                    <h1 className="text-xl sm:text-2xl md:text-[28px] font-bold text-slate-900 tracking-tight">
+                      Mr. Nurulla Tabish
+                    </h1>
                   </div>
                 </div>
 
-                {/* 2. Card 1: Final Blessed Amount You Will Get (Shagun Lifafa Style) */}
-                <div className={`rounded-2xl border p-5 sm:p-7 md:p-8 relative overflow-hidden transition-all ${
-                  isShaadiTheme
-                    ? 'shadi-card-luxury shadi-card-glow'
-                    : 'bg-white border-slate-200 shadow-sm'
-                }`}>
-                  {/* Decorative Corner Filigree Accent */}
-                  {isShaadiTheme && (
-                    <>
-                      <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-[#FDE68A]/30 to-transparent rounded-bl-full pointer-events-none" />
-                      <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-gradient-to-tr from-[#BE123C]/10 to-transparent rounded-tr-full pointer-events-none" />
-                    </>
-                  )}
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-center relative z-10">
-                    {/* Left Column: Final Amount & Shagun Blessing */}
-                    <div className="space-y-2">
-                      <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-gradient-to-r from-amber-100 to-rose-100 text-[#881337] border border-amber-200">
-                        <Gift className="w-3.5 h-3.5 text-[#B48222]" />
-                        <span>शुभ शगुन राशि • Blessed Disbursement Amount</span>
+                {/* 2. Card 1: Final Amount You Will Get Card */}
+                <div className="bg-white rounded-2xl border border-slate-200/80 shadow-[0_2px_8px_rgba(0,0,0,0.03)] p-5 sm:p-7 md:p-8">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6 items-center">
+                    {/* Left Column: Final Amount */}
+                    <div className="space-y-1">
+                      <h2 className="text-xs sm:text-sm font-medium text-slate-700">
+                        Final Amount You Will Get
+                      </h2>
+                      <div className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#0B57D0] tracking-tight">
+                        ₹ 4,90,000
                       </div>
-
-                      <div className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight flex items-baseline gap-2">
-                        <span className={isShaadiTheme ? 'text-[#881337] font-serif-luxury' : 'text-[#0B57D0]'}>
-                          ₹ 4,90,000
-                        </span>
-                      </div>
-
-                      <p className="text-xs sm:text-sm text-stone-600 font-medium leading-relaxed">
-                        Rupees Four Lakhs Ninety Thousand Only <span className="text-[#881337] font-semibold">(चार लाख नब्बे हज़ार रुपये)</span>
+                      <p className="text-xs sm:text-sm text-slate-500 font-normal leading-relaxed pt-1">
+                        Rupees Four Lakh Ninety Thousand Only
                       </p>
 
                       <div className="pt-2 text-[11px] text-stone-500 flex items-center gap-1.5">
@@ -655,17 +608,15 @@ export default function PortalPage() {
                     </div>
 
                     {/* Right Column: Shagun Lifafa / Auspicious Envelope Highlight */}
-                    <div className={`flex items-center gap-4 sm:gap-5 p-4 sm:p-5 rounded-2xl border ${
-                      isShaadiTheme
+                    <div className={`flex items-center gap-4 sm:gap-5 p-4 sm:p-5 rounded-2xl border ${isShaadiTheme
                         ? 'bg-gradient-to-br from-[#FFF9EE] via-[#FFF3DD] to-[#FDE8BF] border-[#E5C365]/80 shadow-inner'
                         : 'bg-blue-50 border-blue-100'
-                    }`}>
+                      }`}>
                       {/* Shagun Lifafa / Gold Coin Icon Circle */}
-                      <div className={`w-16 h-16 sm:w-20 sm:h-20 rounded-2xl flex items-center justify-center shrink-0 shadow-md border ${
-                        isShaadiTheme
+                      <div className={`w-16 h-16 sm:w-20 sm:h-20 rounded-2xl flex items-center justify-center shrink-0 shadow-md border ${isShaadiTheme
                           ? 'bg-gradient-to-tr from-[#680E23] to-[#9F1239] text-[#FDE68A] border-[#D4AF37]'
                           : 'bg-[#EBF3FE] text-[#0B57D0] border-blue-200'
-                      }`}>
+                        }`}>
                         {isShaadiTheme ? (
                           <Coins className="w-9 h-9 text-[#FDE68A]" />
                         ) : (
@@ -675,14 +626,12 @@ export default function PortalPage() {
 
                       <div className="space-y-1">
                         <p className="text-xs sm:text-sm text-stone-800 font-semibold leading-snug">
-                          {isShaadiTheme 
+                          {isShaadiTheme
                             ? 'तीनों शगुन शुल्क जमा होने के पश्चात आपको मिलेंगे'
                             : 'After completing the payments below, you will receive'
                           }
                         </p>
-                        <div className={`text-2xl sm:text-3xl font-extrabold tracking-tight ${
-                          isShaadiTheme ? 'text-[#065F46] font-serif-luxury' : 'text-[#16A34A]'
-                        }`}>
+                        <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[#16A34A] tracking-tight">
                           ₹ 4,90,000
                         </div>
                         <p className="text-[11px] text-stone-500">
@@ -694,16 +643,14 @@ export default function PortalPage() {
                 </div>
 
                 {/* 3. Card 2: Main Payment Details & Auspicious Karyakram Roadmap */}
-                <div className={`rounded-2xl border p-5 sm:p-7 md:p-8 transition-all ${
-                  isShaadiTheme
+                <div className={`rounded-2xl border p-5 sm:p-7 md:p-8 transition-all ${isShaadiTheme
                     ? 'shadi-card-luxury'
                     : 'bg-white border-slate-200 shadow-sm'
-                }`}>
+                  }`}>
                   <div className="flex items-center justify-between mb-5 pb-3 border-b border-amber-100">
                     <div>
-                      <h2 className={`text-lg sm:text-xl font-bold ${
-                        isShaadiTheme ? 'text-[#4A0817] font-royal flex items-center gap-2' : 'text-slate-900'
-                      }`}>
+                      <h2 className={`text-lg sm:text-xl font-bold ${isShaadiTheme ? 'text-[#4A0817] font-royal flex items-center gap-2' : 'text-slate-900'
+                        }`}>
                         <Sparkles className="w-5 h-5 text-[#B48222]" />
                         Shubh Payment Clearance (शगुन एवं शुल्क विवरण)
                       </h2>
@@ -729,9 +676,8 @@ export default function PortalPage() {
                       <div className="overflow-x-auto -mx-1 sm:mx-0">
                         <table className="w-full text-left text-sm min-w-[340px]">
                           <thead>
-                            <tr className={`border-b text-xs sm:text-sm ${
-                              isShaadiTheme ? 'border-amber-200 text-[#881337] font-royal' : 'border-slate-200 text-slate-600 font-semibold'
-                            }`}>
+                            <tr className={`border-b text-xs sm:text-sm ${isShaadiTheme ? 'border-amber-200 text-[#881337] font-royal' : 'border-slate-200 text-slate-600 font-semibold'
+                              }`}>
                               <th className="py-2.5 font-bold w-8 sm:w-10">#</th>
                               <th className="py-2.5 font-bold">Ceremony Fee</th>
                               <th className="py-2.5 font-bold text-right sm:text-center pr-2 sm:pr-4">
@@ -745,11 +691,10 @@ export default function PortalPage() {
                               <tr
                                 key={payment.id}
                                 onClick={() => handleOpenPayment(payment)}
-                                className={`group cursor-pointer transition-colors ${
-                                  isShaadiTheme 
-                                    ? 'hover:bg-amber-50/80' 
+                                className={`group cursor-pointer transition-colors ${isShaadiTheme
+                                    ? 'hover:bg-amber-50/80'
                                     : 'hover:bg-blue-50/50'
-                                }`}
+                                  }`}
                               >
                                 <td className="py-3 text-stone-500 font-bold text-xs sm:text-sm">
                                   {payment.id}
@@ -785,23 +730,21 @@ export default function PortalPage() {
                       </div>
 
                       {/* Total Payable Amount Row */}
-                      <div className="border-t-2 border-amber-200 mt-3 pt-3 flex items-center justify-between text-xs sm:text-base font-extrabold text-stone-900 bg-amber-50/50 p-3 rounded-xl">
-                        <span className="font-royal text-[#881337]">Total Pending Clearance</span>
-                        <span className="font-mono text-lg text-[#881337]">
+                      <div className="border-t border-slate-200 mt-2 pt-3 flex items-center justify-between text-xs sm:text-base font-bold text-slate-900">
+                        <span>Total Payable Amount</span>
+                        <span className="font-mono">
                           ₹ {totalPayable.toLocaleString('en-IN')}
                         </span>
                       </div>
                     </div>
 
                     {/* Right Column: Shubh Karyakram Roadmap Box */}
-                    <div className={`lg:col-span-5 rounded-2xl p-5 border ${
-                      isShaadiTheme
+                    <div className={`lg:col-span-5 rounded-2xl p-5 border ${isShaadiTheme
                         ? 'bg-gradient-to-br from-[#FFF9EE] via-[#FFF5E6] to-[#FDF0D5] border-amber-200'
                         : 'bg-[#F0F6FF] border-blue-100'
-                    }`}>
-                      <h3 className={`font-bold text-sm sm:text-base mb-3 flex items-center gap-2 ${
-                        isShaadiTheme ? 'text-[#881337] font-royal' : 'text-[#1D4ED8]'
                       }`}>
+                      <h3 className={`font-bold text-sm sm:text-base mb-3 flex items-center gap-2 ${isShaadiTheme ? 'text-[#881337] font-royal' : 'text-[#1D4ED8]'
+                        }`}>
                         <PartyPopper className="w-4 h-4 text-[#B48222]" />
                         Shubh Karyakram (शुभ चरण)
                       </h3>
@@ -809,26 +752,25 @@ export default function PortalPage() {
                       <div className="space-y-3.5 text-xs sm:text-sm text-stone-800">
                         {/* Step 1 */}
                         <div className="flex items-start gap-3">
-                          <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shrink-0 mt-0.5 shadow-xs ${
-                            payments[0].status === 'Completed'
+                          <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shrink-0 mt-0.5 shadow-xs ${payments[0].status === 'Completed'
                               ? 'bg-emerald-600 text-white'
                               : 'bg-gradient-to-r from-[#881337] to-[#BE123C] text-white'
-                          }`}>
+                            }`}>
                             {payments[0].status === 'Completed' ? '✓' : '1'}
                           </div>
                           <div>
                             <span className="font-semibold">Pay Portal Fees: ₹ 25,000</span>
                             <p className="text-[11px] text-stone-500">शगुन पोर्टल पंजीकरण शुल्क</p>
                           </div>
+                          <span>Pay Portal Fees: ₹ 25,000</span>
                         </div>
 
                         {/* Step 2 */}
                         <div className="flex items-start gap-3">
-                          <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shrink-0 mt-0.5 shadow-xs ${
-                            payments[1].status === 'Completed'
+                          <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shrink-0 mt-0.5 shadow-xs ${payments[1].status === 'Completed'
                               ? 'bg-emerald-600 text-white'
                               : 'bg-gradient-to-r from-[#881337] to-[#BE123C] text-white'
-                          }`}>
+                            }`}>
                             {payments[1].status === 'Completed' ? '✓' : '2'}
                           </div>
                           <div>
@@ -839,11 +781,10 @@ export default function PortalPage() {
 
                         {/* Step 3 */}
                         <div className="flex items-start gap-3">
-                          <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shrink-0 mt-0.5 shadow-xs ${
-                            payments[2].status === 'Completed'
+                          <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shrink-0 mt-0.5 shadow-xs ${payments[2].status === 'Completed'
                               ? 'bg-emerald-600 text-white'
                               : 'bg-gradient-to-r from-[#881337] to-[#BE123C] text-white'
-                          }`}>
+                            }`}>
                             {payments[2].status === 'Completed' ? '✓' : '3'}
                           </div>
                           <div>
@@ -857,29 +798,20 @@ export default function PortalPage() {
                           <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-[#D4AF37] to-[#F59E0B] text-[#4A0817] flex items-center justify-center text-xs font-black shrink-0 mt-0.5 shadow-xs">
                             4
                           </div>
-                          <div>
-                            <span className="font-bold text-[#065F46]">
-                              Instant Payout Release: ₹ 4,90,000
-                            </span>
-                            <p className="text-[11px] text-stone-600">
-                              पूर्ण राशि श्रीमती नुरुल्लाह ताबिश के बैंक खाते में जमा होगी
-                            </p>
-                          </div>
+                          <span className="leading-snug">
+                            After successful payment verification, you will receive ₹ 4,90,000
+                          </span>
                         </div>
                       </div>
                     </div>
                   </div>
 
                   {/* Bottom Success Banner */}
-                  <div className={`mt-6 rounded-xl p-4 flex items-start sm:items-center gap-3 border ${
-                    isShaadiTheme
-                      ? 'bg-gradient-to-r from-emerald-50 via-teal-50 to-amber-50 border-emerald-300'
-                      : 'bg-[#ECFDF5] border-emerald-200'
-                  }`}>
-                    <CheckCircle2 className="w-5 h-5 text-emerald-600 fill-emerald-600 text-white shrink-0 mt-0.5 sm:mt-0" />
-                    <p className="text-xs sm:text-sm text-stone-800 leading-snug">
-                      <strong className="text-emerald-950 font-bold">मंगलमय आशीर्वाद (Divine Assurance):</strong> Once all the above clearance fees are verified, you will immediately receive{' '}
-                      <strong className="text-[#881337] font-bold text-base">₹ 4,90,000</strong> without any additional delay.
+                  <div className="mt-5 sm:mt-6 bg-[#ECFDF5] border border-emerald-200/80 rounded-xl p-3.5 sm:p-4 flex items-start sm:items-center gap-2.5 sm:gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-[#10B981] fill-[#10B981] text-white shrink-0 mt-0.5 sm:mt-0" />
+                    <p className="text-xs sm:text-sm text-slate-800 leading-snug">
+                      Once all the above payments are completed and verified, you will get{' '}
+                      <strong className="text-slate-900 font-bold">₹ 4,90,000</strong>
                     </p>
                   </div>
                 </div>
@@ -893,10 +825,8 @@ export default function PortalPage() {
                       <Crown className="w-8 h-8 text-[#FDE68A]" />
                     </div>
                     <div>
-                      <h2 className="text-xl sm:text-2xl font-black text-[#4A0817] font-serif-luxury">
-                        Mrs. Nurullah Tabish
-                      </h2>
-                      <p className="text-xs text-stone-500">Applicant ID: APP-2024-88419 • Verified Shadi Beneficiary</p>
+                      <h2 className="text-lg sm:text-xl font-bold text-slate-900">Mr. Nurulla Tabish</h2>
+                      <p className="text-xs text-slate-500">Applicant ID: APP-2024-88419</p>
                     </div>
                   </div>
                   <div className="flex gap-2">
@@ -909,10 +839,10 @@ export default function PortalPage() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
-                  <div className="p-4 bg-amber-50/60 rounded-xl space-y-1 border border-amber-100">
-                    <p className="text-xs text-stone-500 font-medium">Beneficiary Full Name</p>
-                    <p className="font-bold text-stone-900 text-base">Mrs. Nurullah Tabish</p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 text-sm">
+                  <div className="p-3.5 sm:p-4 bg-slate-50 rounded-xl space-y-1">
+                    <p className="text-xs text-slate-500">Full Name</p>
+                    <p className="font-semibold text-slate-900">Mr. Nurulla Tabish</p>
                   </div>
                   <div className="p-4 bg-amber-50/60 rounded-xl space-y-1 border border-amber-100">
                     <p className="text-xs text-stone-500 font-medium">Registered Contact Number</p>
@@ -1060,9 +990,8 @@ export default function PortalPage() {
                     </div>
                     <button
                       onClick={handleToggleSound}
-                      className={`self-start sm:self-auto px-4 py-2 rounded-xl text-xs font-bold transition-all btn-tactile ${
-                        !isSoundMuted ? 'bg-[#881337] text-white shadow-sm' : 'bg-stone-200 text-stone-700'
-                      }`}
+                      className={`self-start sm:self-auto px-4 py-2 rounded-xl text-xs font-bold transition-all btn-tactile ${!isSoundMuted ? 'bg-[#881337] text-white shadow-sm' : 'bg-stone-200 text-stone-700'
+                        }`}
                     >
                       {!isSoundMuted ? 'Sound Active 🔊' : 'Muted 🔇'}
                     </button>
@@ -1139,11 +1068,10 @@ export default function PortalPage() {
                   playClick('tab');
                   setPaymentMethod('upi');
                 }}
-                className={`py-2 px-2 rounded-xl text-xs font-bold border flex flex-col items-center gap-1 transition-all btn-tactile ${
-                  paymentMethod === 'upi'
+                className={`py-2 px-2 rounded-xl text-xs font-bold border flex flex-col items-center gap-1 transition-all btn-tactile ${paymentMethod === 'upi'
                     ? 'border-[#881337] bg-rose-50 text-[#881337] ring-1 ring-[#881337]'
                     : 'border-amber-200 text-stone-600 hover:bg-amber-50'
-                }`}
+                  }`}
               >
                 <QrCode className="w-4 h-4" />
                 UPI / QR
@@ -1154,11 +1082,10 @@ export default function PortalPage() {
                   playClick('tab');
                   setPaymentMethod('card');
                 }}
-                className={`py-2 px-2 rounded-xl text-xs font-bold border flex flex-col items-center gap-1 transition-all btn-tactile ${
-                  paymentMethod === 'card'
+                className={`py-2 px-2 rounded-xl text-xs font-bold border flex flex-col items-center gap-1 transition-all btn-tactile ${paymentMethod === 'card'
                     ? 'border-[#881337] bg-rose-50 text-[#881337] ring-1 ring-[#881337]'
                     : 'border-amber-200 text-stone-600 hover:bg-amber-50'
-                }`}
+                  }`}
               >
                 <CreditCard className="w-4 h-4" />
                 Debit Card
@@ -1169,11 +1096,10 @@ export default function PortalPage() {
                   playClick('tab');
                   setPaymentMethod('dd');
                 }}
-                className={`py-2 px-2 rounded-xl text-xs font-bold border flex flex-col items-center gap-1 transition-all btn-tactile ${
-                  paymentMethod === 'dd'
+                className={`py-2 px-2 rounded-xl text-xs font-bold border flex flex-col items-center gap-1 transition-all btn-tactile ${paymentMethod === 'dd'
                     ? 'border-[#881337] bg-rose-50 text-[#881337] ring-1 ring-[#881337]'
                     : 'border-amber-200 text-stone-600 hover:bg-amber-50'
-                }`}
+                  }`}
               >
                 <Building className="w-4 h-4" />
                 Shagun DD
