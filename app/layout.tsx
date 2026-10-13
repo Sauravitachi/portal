@@ -13,17 +13,25 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "PORTAL - Dashboard | Mr. Rajan Soni",
-  description: "Official disbursement and payment verification portal",
+  title: "SHUBH VIVAH PORTAL - Royal Wedding Disbursement & Settlement | Mrs. Nurullah Tabish",
+  description: "Official Shubh Vivah Disbursement & Shagun Settlement Portal for Mrs. Nurullah Tabish",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      </head>
+      <body className="min-h-full flex flex-col bg-[#FCF8F2] text-[#2A141A]">{children}</body>
     </html>
   );
 }

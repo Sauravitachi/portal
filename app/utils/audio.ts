@@ -1,15 +1,16 @@
 'use client';
 
 // Web Audio API Procedural Sound Engine
-// Guarantees zero latency, zero external network dependency, and crisp realistic sound effects
+// Zero external network dependency, zero latency, custom Royal Wedding Chimes & Tactile Feedback
 
-type SoundType = 'click' | 'switch' | 'soft' | 'pop' | 'success' | 'alert' | 'tab';
+type SoundType = 'click' | 'switch' | 'soft' | 'pop' | 'success' | 'alert' | 'tab' | 'shadi';
+export type SoundProfileType = 'shadi' | 'crisp' | 'tactile' | 'bubble';
 
 class SoundEngine {
   private ctx: AudioContext | null = null;
   private isMuted: boolean = false;
   private volume: number = 0.5;
-  private soundProfile: 'crisp' | 'tactile' | 'bubble' = 'crisp';
+  private soundProfile: SoundProfileType = 'shadi';
   private listenersAttached: boolean = false;
   private subscribers: Set<() => void> = new Set();
 
@@ -19,9 +20,11 @@ class SoundEngine {
       if (savedMute !== null) {
         this.isMuted = savedMute === 'true';
       }
-      const savedProfile = localStorage.getItem('portal_sound_profile') as 'crisp' | 'tactile' | 'bubble';
+      const savedProfile = localStorage.getItem('portal_sound_profile') as SoundProfileType;
       if (savedProfile) {
         this.soundProfile = savedProfile;
+      } else {
+        this.soundProfile = 'shadi';
       }
     }
   }
@@ -68,7 +71,7 @@ class SoundEngine {
     return this.isMuted;
   }
 
-  public setSoundProfile(profile: 'crisp' | 'tactile' | 'bubble') {
+  public setSoundProfile(profile: SoundProfileType) {
     this.soundProfile = profile;
     if (typeof window !== 'undefined') {
       localStorage.setItem('portal_sound_profile', profile);
@@ -93,13 +96,17 @@ class SoundEngine {
       masterGain.connect(ctx.destination);
 
       if (type === 'click') {
-        if (this.soundProfile === 'crisp') {
+        if (this.soundProfile === 'shadi') {
+          this.playShadiGoldChime(ctx, masterGain, now);
+        } else if (this.soundProfile === 'crisp') {
           this.playCrispClick(ctx, masterGain, now);
         } else if (this.soundProfile === 'tactile') {
           this.playTactileTap(ctx, masterGain, now);
         } else {
           this.playBubblePop(ctx, masterGain, now);
         }
+      } else if (type === 'shadi') {
+        this.playShadiGoldChime(ctx, masterGain, now);
       } else if (type === 'switch') {
         this.playMechanicalSwitch(ctx, masterGain, now);
       } else if (type === 'soft') {
@@ -109,7 +116,7 @@ class SoundEngine {
       } else if (type === 'tab') {
         this.playTabClick(ctx, masterGain, now);
       } else if (type === 'success') {
-        this.playSuccessChime(ctx, masterGain, now);
+        this.playCelebratoryShadiFanfare(ctx, masterGain, now);
       } else if (type === 'alert') {
         this.playAlertTone(ctx, masterGain, now);
       }
@@ -118,23 +125,61 @@ class SoundEngine {
       if (typeof window !== 'undefined' && typeof navigator !== 'undefined' && 'vibrate' in navigator) {
         try {
           if (type === 'success') {
-            navigator.vibrate([20, 50, 20]);
+            navigator.vibrate([30, 60, 30, 80, 40]);
           } else {
-            navigator.vibrate(8);
+            navigator.vibrate(10);
           }
         } catch {
-          // Ignore if vibration blocked by browser permission
+          // Ignore if vibration blocked by browser
         }
       }
     } catch {
-      // Audio playback fails silently if restricted by autoplay policies
+      // Audio playback fails silently if restricted
     }
   }
 
-  // 1. Crisp, tactile mechanical UI click (Transient snap + damp resonance)
+  // 1. Royal Gold / Auspicious Wedding Ghungroo & Bell Chime
+  private playShadiGoldChime(ctx: AudioContext, destination: GainNode, now: number) {
+    // Harmonic frequencies simulating miniature golden brass ghungroo / bell chime
+    const freqs = [1760, 2637, 3520]; // A6, E7, A7
+    freqs.forEach((freq, idx) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, now + idx * 0.004);
+
+      const amp = 0.22 / (idx + 1);
+      gain.gain.setValueAtTime(amp, now);
+      gain.gain.exponentialRampToValueAtTime(0.0008, now + 0.12 + idx * 0.04);
+
+      osc.connect(gain);
+      gain.connect(destination);
+
+      osc.start(now + idx * 0.004);
+      osc.stop(now + 0.18 + idx * 0.04);
+    });
+
+    // Subtle warm tap foundation
+    const tapOsc = ctx.createOscillator();
+    const tapGain = ctx.createGain();
+    tapOsc.type = 'triangle';
+    tapOsc.frequency.setValueAtTime(440, now);
+    tapOsc.frequency.exponentialRampToValueAtTime(110, now + 0.03);
+
+    tapGain.gain.setValueAtTime(0.25, now);
+    tapGain.gain.exponentialRampToValueAtTime(0.001, now + 0.035);
+
+    tapOsc.connect(tapGain);
+    tapGain.connect(destination);
+
+    tapOsc.start(now);
+    tapOsc.stop(now + 0.04);
+  }
+
+  // 2. Crisp, tactile mechanical UI click
   private playCrispClick(ctx: AudioContext, destination: GainNode, now: number) {
-    // Sharp high frequency noise snap (transient)
-    const bufferSize = Math.floor(ctx.sampleRate * 0.006); // 6ms noise burst
+    const bufferSize = Math.floor(ctx.sampleRate * 0.006);
     const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
     const data = buffer.getChannelData(0);
     for (let i = 0; i < bufferSize; i++) {
@@ -159,7 +204,6 @@ class SoundEngine {
     noise.start(now);
     noise.stop(now + 0.01);
 
-    // Resonant body click tone
     const osc = ctx.createOscillator();
     const oscGain = ctx.createGain();
 
@@ -177,7 +221,7 @@ class SoundEngine {
     osc.stop(now + 0.035);
   }
 
-  // 2. Mechanical keyboard switch click
+  // 3. Mechanical switch
   private playMechanicalSwitch(ctx: AudioContext, destination: GainNode, now: number) {
     const osc = ctx.createOscillator();
     const gain = ctx.createGain();
@@ -186,7 +230,7 @@ class SoundEngine {
     osc.frequency.setValueAtTime(2200, now);
     osc.frequency.exponentialRampToValueAtTime(350, now + 0.03);
 
-    gain.gain.setValueAtTime(0.5, now);
+    gain.gain.setValueAtTime(0.45, now);
     gain.gain.exponentialRampToValueAtTime(0.001, now + 0.035);
 
     osc.connect(gain);
@@ -196,7 +240,7 @@ class SoundEngine {
     osc.stop(now + 0.04);
   }
 
-  // 3. Tactile soft tap (Modern iOS/Mac style tap)
+  // 4. Tactile soft tap
   private playTactileTap(ctx: AudioContext, destination: GainNode, now: number) {
     const osc = ctx.createOscillator();
     const gain = ctx.createGain();
@@ -215,7 +259,7 @@ class SoundEngine {
     osc.stop(now + 0.05);
   }
 
-  // 4. Bubble Pop
+  // 5. Bubble Pop
   private playBubblePop(ctx: AudioContext, destination: GainNode, now: number) {
     const osc = ctx.createOscillator();
     const gain = ctx.createGain();
@@ -234,48 +278,50 @@ class SoundEngine {
     osc.stop(now + 0.07);
   }
 
-  // 5. Tab navigation click
+  // 6. Tab navigation click
   private playTabClick(ctx: AudioContext, destination: GainNode, now: number) {
     const osc = ctx.createOscillator();
     const gain = ctx.createGain();
 
     osc.type = 'sine';
-    osc.frequency.setValueAtTime(980, now);
-    osc.frequency.exponentialRampToValueAtTime(440, now + 0.02);
+    osc.frequency.setValueAtTime(1050, now);
+    osc.frequency.exponentialRampToValueAtTime(520, now + 0.025);
 
     gain.gain.setValueAtTime(0.3, now);
-    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.025);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.03);
 
     osc.connect(gain);
     gain.connect(destination);
 
     osc.start(now);
-    osc.stop(now + 0.03);
+    osc.stop(now + 0.035);
   }
 
-  // 6. Success chime for payment / completion
-  private playSuccessChime(ctx: AudioContext, destination: GainNode, now: number) {
-    const notes = [587.33, 880, 1174.66]; // D5, A5, D6
+  // 7. Celebratory Shaadi Fanfare / Shehnai & Golden Bell Arpeggio
+  private playCelebratoryShadiFanfare(ctx: AudioContext, destination: GainNode, now: number) {
+    // Auspicious celebratory musical chord progression [Sa, Ga, Pa, Sa']: C5, E5, G5, C6, E6
+    const notes = [523.25, 659.25, 783.99, 1046.50, 1318.51];
     notes.forEach((freq, idx) => {
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
 
       const noteTime = now + idx * 0.08;
-      osc.type = 'sine';
+      osc.type = 'triangle';
       osc.frequency.setValueAtTime(freq, noteTime);
 
-      gain.gain.setValueAtTime(0.25, noteTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, noteTime + 0.45);
+      // Add warmth and vibrato for wedding celebratory feel
+      gain.gain.setValueAtTime(0.22, noteTime);
+      gain.gain.exponentialRampToValueAtTime(0.0008, noteTime + 0.55);
 
       osc.connect(gain);
       gain.connect(destination);
 
       osc.start(noteTime);
-      osc.stop(noteTime + 0.5);
+      osc.stop(noteTime + 0.6);
     });
   }
 
-  // 7. Alert / info tone
+  // 8. Alert tone
   private playAlertTone(ctx: AudioContext, destination: GainNode, now: number) {
     const osc = ctx.createOscillator();
     const gain = ctx.createGain();
@@ -294,7 +340,7 @@ class SoundEngine {
     osc.stop(now + 0.26);
   }
 
-  // Attach global click event handler so every interactive element clicks automatically
+  // Attach global click event handler
   public attachGlobalSoundListener() {
     if (this.listenersAttached || typeof window === 'undefined') return;
     const resumeAudio = () => {
@@ -308,7 +354,6 @@ class SoundEngine {
     window.addEventListener('click', (e) => {
       resumeAudio();
 
-      // Check if target or parent is an interactive element
       const target = e.target as HTMLElement | null;
       if (!target) return;
 

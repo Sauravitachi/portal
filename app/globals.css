@@ -1,21 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
+
 :root {
-  --portal-bg: #F4F7FC;
-  --portal-navy: #061D4C;
-  --portal-blue: #0B57D0;
-  --portal-blue-light: #EBF3FE;
-  --portal-green: #16A34A;
-  --portal-green-light: #ECFDF5;
-  --portal-amber: #B45309;
-  --portal-amber-light: #FEF3C7;
-  --portal-border: #E5E7EB;
+  /* Royal Shaadi (Indian Wedding) Theme Design Tokens */
+  --shadi-maroon-dark: #4A0817;
+  --shadi-maroon: #680E23;
+  --shadi-maroon-deep: #741129;
+  --shadi-crimson: #881337;
+  --shadi-ruby: #9F1239;
+  --shadi-sindoor: #BE123C;
+  --shadi-rose-velvet: #E11D48;
+  
+  --shadi-gold-shimmer: #FFF7D6;
+  --shadi-gold-light: #FBE59E;
+  --shadi-gold: #D4AF37;
+  --shadi-gold-deep: #B48222;
+  --shadi-gold-antique: #8A6114;
+  
+  --shadi-silk-bg: #FCF8F2;
+  --shadi-card-bg: #FFFFFF;
+  --shadi-border-gold: #F0DC9E;
+  --shadi-border-maroon: #F5D0D8;
+  
+  --shadi-emerald: #065F46;
+  --shadi-emerald-light: #ECFDF5;
+  --shadi-haldi: #D97706;
+  --shadi-haldi-light: #FEF3C7;
+
+  /* Typography */
+  --font-royal: 'Cinzel', 'Playfair Display', Georgia, serif;
+  --font-serif: 'Playfair Display', Georgia, Cambria, serif;
 }
 
 body {
-  background-color: var(--portal-bg);
-  color: #1F2937;
-  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--shadi-silk-bg);
+  color: #261619;
+  font-family: var(--font-geist-sans), 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   margin: 0;
   padding: 0;
   overflow-x: hidden;
@@ -23,32 +44,118 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Custom crisp scrollbars */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-::-webkit-scrollbar-track {
-  background: #f1f5f9;
-}
-::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 9999px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+/* Royal Serif Typography Classes */
+.font-royal {
+  font-family: 'Cinzel', Georgia, serif;
+  letter-spacing: 0.04em;
 }
 
-/* Click sound tactile ripple effect */
+.font-serif-luxury {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+/* Auspicious Gold Foil Gradients */
+.shadi-gold-gradient {
+  background: linear-gradient(135deg, #FDE68A 0%, #D4AF37 50%, #996515 100%);
+}
+
+.shadi-gold-text {
+  background: linear-gradient(135deg, #FFDF70 0%, #D4AF37 50%, #AA7A1E 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.shadi-crimson-gradient {
+  background: linear-gradient(135deg, #580B1E 0%, #741129 45%, #881337 100%);
+}
+
+.shadi-card-luxury {
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid #F0DC9E;
+  box-shadow: 0 4px 20px -2px rgba(116, 17, 41, 0.05), 0 2px 8px -1px rgba(212, 175, 55, 0.1);
+  backdrop-filter: blur(8px);
+}
+
+.shadi-card-glow {
+  box-shadow: 0 8px 30px -4px rgba(212, 175, 55, 0.2), 0 4px 12px -2px rgba(104, 14, 35, 0.1);
+}
+
+/* Gold Shimmer Button Animation */
+@keyframes goldShine {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.shadi-btn-gold {
+  background: linear-gradient(135deg, #E5B842 0%, #F6CF63 25%, #D4AF37 50%, #B48222 100%);
+  background-size: 200% 200%;
+  animation: goldShine 5s ease infinite;
+  color: #381E05;
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(212, 175, 55, 0.35);
+}
+
+.shadi-btn-gold:hover {
+  filter: brightness(1.05);
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.45);
+}
+
+/* Royal Toran / Marigold Decorative Border Top */
+.toran-border {
+  background-image: radial-gradient(#D4AF37 1.5px, transparent 1.5px), radial-gradient(#BE123C 1.5px, transparent 1.5px);
+  background-size: 16px 16px;
+  background-position: 0 0, 8px 8px;
+}
+
+/* Subtle Indian Mandap & Paisley Silk Pattern Background */
+.shadi-silk-texture {
+  background-color: #FCF8F2;
+  background-image: radial-gradient(rgba(212, 175, 55, 0.12) 1px, transparent 1px), radial-gradient(rgba(136, 19, 55, 0.05) 1px, transparent 1px);
+  background-size: 24px 24px;
+  background-position: 0 0, 12px 12px;
+}
+
+/* Custom crisp royal scrollbars */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #FAF2E8;
+}
+::-webkit-scrollbar-thumb {
+  background: #D9BE7D;
+  border-radius: 9999px;
+  border: 1px solid #FCF8F2;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #B48222;
+}
+
+/* Tactile button interaction */
 .btn-tactile {
-  transition: transform 0.08s ease, filter 0.08s ease;
+  transition: transform 0.08s ease, filter 0.08s ease, box-shadow 0.15s ease;
 }
 .btn-tactile:active {
   transform: scale(0.975);
-  filter: brightness(0.95);
+  filter: brightness(0.96);
 }
 
-/* Subtle sound wave animation when click sound triggers */
+/* Auspicious Diya Flame subtle flicker */
+@keyframes diyaFlicker {
+  0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.95; }
+  25% { transform: scale(1.06) rotate(-1.5deg); opacity: 1; }
+  50% { transform: scale(0.96) rotate(1.5deg); opacity: 0.9; }
+  75% { transform: scale(1.04) rotate(-0.8deg); opacity: 0.98; }
+}
+
+.diya-flame-anim {
+  animation: diyaFlicker 2.2s infinite ease-in-out;
+  transform-origin: bottom center;
+}
+
+/* Sound pulse effect */
 @keyframes audioPulse {
   0% { transform: scale(1); opacity: 0.8; }
   50% { transform: scale(1.15); opacity: 1; }
